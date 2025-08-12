@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head><title>Verify Certificate</title></head>
+<body>
+  <h2>Verify Certificates by Address</h2>
+  <input type="text" id="addr" placeholder="Wallet address" />
+  <button onclick="verify()">Check</button>
+  <ul id="certs"></ul>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script>
+    const contractAddress = "PASTE_YOUR_DEPLOYED_CONTRACT_ADDRESS";
+    const abi = ["function getCertificates(address) view returns (string[])"];
+    async function verify() {
+      const addr = document.getElementById("addr").value;
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const contract = new ethers.Contract(contractAddress, abi, provider);
+      const certs = await contract.getCertificates(addr);
+      document.getElementById("certs").innerHTML = certs.map(c => `<li>${c}</li>`).join("");
+    }
+  </script>
+</body>
+</html>

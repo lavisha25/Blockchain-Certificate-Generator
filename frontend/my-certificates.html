@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>My Certificates</title></head>
+<body>
+  <h2>My Certificates</h2>
+  <ul id="certList"></ul>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script>
+    const contractAddress = "0xf854DE04E1A4A27Ff2C91a790be935D5Dfbb11b7";
+    const abi = [
+      "function getCertificates(address) view returns (string[])"
+    ];
+    async function loadCertificates() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const userAddress = await signer.getAddress();
+      const contract = new ethers.Contract(contractAddress, abi, provider);
+      const certs = await contract.getCertificates(userAddress);
+      document.getElementById("certList").innerHTML = certs.map(c => `<li>${c}</li>`).join("");
+    }
+    loadCertificates();
+  </script>
+</body>
+</html>

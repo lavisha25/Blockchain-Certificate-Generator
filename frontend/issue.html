@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head><title>Issue Certificate</title></head>
+<body>
+  <h2>Issue Certificate</h2>
+  <input type="text" id="recipient" placeholder="Recipient address" />
+  <input type="text" id="message" placeholder="Certificate message" />
+  <button onclick="issueCertificate()">Issue</button>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script>
+    const contractAddress = "PASTE_YOUR_DEPLOYED_CONTRACT_ADDRESS";
+    const abi = [
+      "function issueCertificate(address,string)",
+      "function getCertificates(address) view returns (string[])"
+    ];
+    let signer, contract;
+
+    async function init() {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      await provider.send("eth_requestAccounts", []);
+      signer = provider.getSigner();
+      contract = new ethers.Contract(contractAddress, abi, signer);
+    }
+
+    async function issueCertificate() {
+      const to = document.getElementById("recipient").value;
+      const msg = document.getElementById("message").value;
+      const tx = await contract.issueCertificate(to, msg);
+      await tx.wait();
+      alert("Certificate issued!");
+    }
+
+    init();
+  </script>
+</body>
+</html>
