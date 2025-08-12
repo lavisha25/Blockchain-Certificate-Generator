@@ -1,0 +1,81 @@
+🏆 Blockchain Certificate Generator
+The Blockchain Certificate Generator is a decentralized application (DApp) that allows authorized issuers to create and verify certificates using blockchain technology. It ensures security, transparency, and tamper-proof storage of digital credentials, eliminating the risk of forgery and providing permanent verification.
+
+📜 Features
+🔒 Immutable Certificates – Once issued, certificates cannot be changed or deleted.
+
+🌐 Decentralized Verification – Anyone can verify a certificate using its unique ID.
+
+💡 User-Friendly Interface – Simple web UI for issuing and verifying certificates.
+
+🔗 Blockchain-Powered – All data is stored on the Ethereum blockchain.
+
+💳 MetaMask Integration – Secure wallet connection for transaction signing.
+
+📂 Project Structure
+bash
+Copy
+Edit
+Blockchain-Certificate-Generator/
+│── contracts/        # Solidity smart contracts  
+│── scripts/          # Deployment scripts  
+│── frontend/         # HTML/CSS/JavaScript files for UI  
+│── test/             # Smart contract tests  
+│── hardhat.config.js # Hardhat configuration file  
+│── package.json      # Dependencies and scripts  
+⚙️ Installation & Setup
+1️⃣ Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/lavisha25/Blockchain-Certificate-Generator.git
+cd Blockchain-Certificate-Generator
+2️⃣ Install Dependencies
+bash
+Copy
+Edit
+npm install
+3️⃣ Start Local Blockchain
+bash
+Copy
+Edit
+npx hardhat node
+💡 Keep this terminal running — it’s your local Ethereum network.
+
+4️⃣ Deploy Smart Contract
+Open a new terminal in the same folder:
+
+bash
+Copy
+Edit
+npx hardhat run scripts/deploy.js --network localhost
+5️⃣ Start Frontend
+Go inside the frontend folder and open index.html in your browser.
+
+💡 You must have MetaMask installed and connected to the local network.
+
+🚀 How to Use
+Issuer Login → Connect wallet → Enter certificate details → Click Issue Certificate.
+
+Verification → Enter the certificate ID → Click Verify to check authenticity.
+
+📦 Requirements
+Node.js (v16 or above)
+
+MetaMask browser extension
+
+Hardhat (comes with the project)
+
+🛠 Tech Stack
+Solidity – Smart contracts
+
+Hardhat – Development framework
+
+Ethers.js – Blockchain communication
+
+HTML/CSS/JavaScript – Frontend
+
+MetaMask – Wallet integration
+
+📜 License
+This project is licensed under the MIT License – feel free to use and modify it.
